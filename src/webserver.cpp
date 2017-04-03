@@ -42,7 +42,6 @@
 #include <QUrl>
 #include <QVector>
 #include <QDebug>
-#include <sys/socket.h>
 
 namespace UrlEncodedParser
 {
@@ -128,19 +127,7 @@ bool WebServer::listenOnPort(const QString& port, const QVariantMap& opts)
         return false;
     }
 
-    // read the port back, so we handle port 0 correctly
-    // mongoose supports >1 listeners, but we will only
-    // ever be passing one, so its safe to assume it is
-    // the first, and that it was opened successfully
-    // (tested w/ assertion)
-    if (port.toInt() == 0) {
-      int port = mg_get_first_listening_port(m_ctx);
-      Q_ASSERT(port != NULL);
-      m_port = QString::number(port);
-    } else {
-      m_port = port;
-    }
-    
+    m_port = port;
     return true;
 }
 
