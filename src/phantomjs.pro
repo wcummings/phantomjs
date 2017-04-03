@@ -68,6 +68,7 @@ OTHER_FILES = \
     repl.js
 
 include(mongoose/mongoose.pri)
+include(http-parser/http-parser.pri)
 include(linenoise/linenoise.pri)
 include(qcommandline/qcommandline.pri)
 
